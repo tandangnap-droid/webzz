@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d19">
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+  --bg:#070b14;--panel:#0e1728;--panel2:#121f35;--line:rgba(148,163,184,.14);
+  --blue:#43c7ff;--violet:#9585ff;--mint:#56e0b2;--gold:#f4c66b;
+  --text:#eef5ff;--muted:#9aabc2;--radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:105px}
+body{
+  font-family:'Be Vietnam Pro','Segoe UI',sans-serif;color:var(--text);line-height:1.75;
+  background:
+    radial-gradient(ellipse at 12% 0%,rgba(35,116,190,.22),transparent 34%),
+    radial-gradient(ellipse at 92% 18%,rgba(112,79,210,.16),transparent 32%),var(--bg);
+  min-height:100vh;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.progress{position:fixed;inset:0 auto auto 0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),var(--violet));z-index:1000}
+.nav-wrap{position:sticky;top:0;z-index:100;background:rgba(7,11,20,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{max-width:1160px;margin:auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.7px;white-space:nowrap}
+.brand-mark{width:37px;height:37px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#24b8ef,#7568ee);box-shadow:0 8px 24px #269fe544;color:#fff;font-size:17px}
+.nav-links{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.nav-links a{font-size:12px;color:var(--muted);padding:8px 10px;border-radius:10px;transition:.2s}
+.nav-links a:hover{color:var(--text);background:#ffffff0d}
+.container{width:min(1100px,calc(100% - 36px));margin:36px auto 70px}
+.hero{position:relative;isolation:isolate;overflow:hidden;padding:76px 58px 62px;border:1px solid #72caff2b;border-radius:30px;background:linear-gradient(125deg,rgba(21,105,157,.22),rgba(82,67,157,.20)),rgba(13,23,40,.85);box-shadow:0 28px 90px #0005}
+.hero:before,.hero:after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(2px)}
+.hero:before{width:370px;height:370px;right:-90px;top:-180px;background:radial-gradient(circle,#48c8ff30,transparent 68%)}
+.hero:after{width:300px;height:300px;left:-150px;bottom:-190px;background:radial-gradient(circle,#8b79ff30,transparent 70%)}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 13px;border:1px solid #43c7ff45;border-radius:99px;background:#43c7ff0e;color:#8cddff;font-size:11px;font-weight:800;letter-spacing:1.8px}
+.eyebrow:before{content:"";width:7px;height:7px;background:var(--mint);border-radius:50%;box-shadow:0 0 12px var(--mint)}
+.hero h1{font-size:clamp(32px,5vw,58px);line-height:1.16;letter-spacing:-1.8px;margin:23px 0 17px;font-weight:900;max-width:800px}
+.gradient{background:linear-gradient(100deg,#5bd5ff,#a99aff 75%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-desc{max-width:690px;color:#b5c4d8;font-size:15px}
+.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.pill{padding:8px 12px;border-radius:10px;background:#ffffff0a;border:1px solid var(--line);font-size:11px;color:#c6d4e8}
+.section-label{display:flex;align-items:center;gap:10px;color:#8ea2bd;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin:34px 2px 13px}
+.section-label:after{content:"";height:1px;flex:1;background:var(--line)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stat{position:relative;overflow:hidden;padding:22px 23px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#13233a,#0d1728);transition:.25s}
+.stat:hover{transform:translateY(-4px);border-color:#43c7ff55}
+.stat:after{content:"";position:absolute;width:100px;height:100px;border-radius:50%;right:-35px;top:-45px;background:#42c5ff13;filter:blur(5px)}
+.stat-label{font-size:11px;color:var(--muted);font-weight:600}
+.stat-value{font-size:clamp(22px,3vw,29px);font-weight:900;letter-spacing:-.7px;margin-top:5px;color:#8cddff}
+.stat-note{font-size:11px;color:#71839d;margin-top:4px}
+.plan-section{margin-top:22px;padding:30px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,rgba(17,29,49,.96),rgba(11,19,33,.96));box-shadow:0 16px 45px #0002;transition:border-color .25s,transform .25s}
+.plan-section:hover{border-color:#56caff42}
+.section-head{display:flex;align-items:center;gap:15px;margin-bottom:23px;padding-bottom:19px;border-bottom:1px solid var(--line)}
+.step{width:48px;height:48px;display:grid;place-items:center;flex-shrink:0;border-radius:15px;background:linear-gradient(140deg,#159dcc,#7567e9);font-size:15px;font-weight:900;box-shadow:0 8px 22px #2a9bd52b}
+.section-head h2{font-size:20px;line-height:1.4;letter-spacing:-.3px}
+.section-head p{font-size:11px;color:#8295b0;margin-top:3px;letter-spacing:1.1px;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.item{position:relative;padding:19px 19px 18px;border:1px solid #ffffff0c;border-radius:15px;background:linear-gradient(145deg,#16253dba,#111d30ba);transition:.22s}
+.item:hover{background:linear-gradient(145deg,#1a304c,#14233a);border-color:#5bcaff45;transform:translateY(-3px)}
+.item h3{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:800;color:#e9f3ff;margin-bottom:8px}
+.item h3:before{content:"";width:6px;height:6px;flex:0 0 6px;border-radius:2px;background:var(--blue);box-shadow:0 0 10px #43c7ff77}
+.item p{font-size:13px;color:#a8b8ce;line-height:1.8}
+.item strong{color:#f0f6ff}
+.tag{display:inline-block;margin-bottom:9px;padding:4px 9px;border-radius:7px;background:#56e0b213;color:var(--mint);font-size:10px;font-weight:800;letter-spacing:.8px}
+.table-title{font-size:15px;color:#dceaff;font-weight:800;margin:26px 0 12px}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px}
+table{width:100%;border-collapse:collapse;min-width:530px}
+th,td{text-align:left;padding:14px 16px;font-size:12px;border-bottom:1px solid var(--line)}
+th{background:#192943;color:#8cddff;font-weight:800}
+td{color:#aebed2}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#ffffff06}
+.callout{display:flex;gap:12px;margin-top:17px;padding:16px 18px;border:1px solid #56e0b226;border-left:3px solid var(--mint);border-radius:12px;background:#56e0b20a;color:#b9c9dc;font-size:12px}
+.callout strong{color:var(--mint)}
+.callout.warning{border-color:#f4c66b2b;border-left-color:var(--gold);background:#f4c66b09}
+.callout.warning strong{color:var(--gold)}
+.callout-icon{font-size:16px;line-height:1.4}
+.footer{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:25px 5px 0;margin-top:35px;border-top:1px solid var(--line);color:#71839d;font-size:11px}
+.footer strong{color:#8cddff;letter-spacing:1.4px}
+.top-btn{position:fixed;right:22px;bottom:22px;width:43px;height:43px;border:1px solid #43c7ff44;border-radius:14px;background:#14243a;color:#9be3ff;font-size:19px;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);transition:.25s;z-index:50}
+.top-btn.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:850px){.nav{flex-wrap:wrap}.nav-links{order:3;width:100%;overflow:auto;flex-wrap:nowrap}.nav-links a{white-space:nowrap}.hero{padding:55px 30px}}
+@media(max-width:650px){.container{width:calc(100% - 22px);margin-top:18px}.hero{padding:42px 22px;border-radius:22px}.hero h1{letter-spacing:-1px}.stats{grid-template-columns:1fr}.stat{padding:17px 19px}.plan-section{padding:21px 16px;border-radius:18px}.section-head h2{font-size:17px}.step{width:42px;height:42px}.grid{grid-template-columns:1fr}.footer{flex-direction:column;text-align:center}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}}
+@media print{
+  body{background:#fff;color:#172033;padding:0}
+  .nav-wrap,.progress,.top-btn{display:none!important}
+  .container{width:100%;margin:0}
+  .hero,.plan-section,.stat{background:#fff;color:#172033;border:1px solid #d7deea;box-shadow:none;break-inside:avoid}
+  .hero{padding:28px}
+  .hero h1{color:#1679b5}
+  .hero-desc,.item p,.stat-label,.stat-note,td,.footer{color:#475569}
+  .section-head h2,.item h3,.table-title{color:#172033}
+  .item{background:#f6f8fb;border-color:#e1e6ef}
+  .item strong{color:#172033}
+  .stat-value{color:#1679b5}
+  .callout{background:#f1faf7;color:#334155}
+  .callout.warning{background:#fff9e9}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<div class="nav-wrap">
+  <nav class="nav">
+    <a class="brand" href="#top"><span class="brand-mark">R</span><span>ROFARM <span style="color:#75d8ff">SERVICE</span></span></a>
+    <div class="nav-links">
+      <a href="#overview">Tổng quan</a>
+      <a href="#step1">Ý tưởng</a>
+      <a href="#step2">Mục tiêu</a>
+      <a href="#step3">Điều kiện</a>
+      <a href="#step4">Chiến lược</a>
+      <a href="#step5">Rủi ro/cơ hội</a>
+    </div>
+  </nav>
+</div>
+
+<main class="container" id="top">
+  <header class="hero reveal">
+    
+    
+    <p class="hero-desc">Dự án cung cấp dịch vụ hỗ trợ trải nghiệm, hướng dẫn và tài nguyên trong các trò chơi Roblox. Xây dựng mô hình kinh doanh trực tuyến với tiêu chí uy tín, minh bạch và phát triển bền vững.</p>
+    <div class="hero-meta">
+      <span class="pill">✦ Dự án kinh doanh cá nhân</span>
+      <span class="pill">⌁ Hoạt động trực tuyến</span>
+      <span class="pill">◈ Roblox Community</span>
+    </div>
+  </header>
+
+  <div class="section-label" id="overview">Tổng quan dự án</div>
+  <section class="stats">
+    <div class="stat reveal"><div class="stat-label">MỨC GIÁ DỊCH VỤ DỰ KIẾN</div><div class="stat-value">10K–50K</div><div class="stat-note">VNĐ / gói dịch vụ</div></div>
+    <div class="stat reveal"><div class="stat-label">MỤC TIÊU ĐƠN HÀNG</div><div class="stat-value">15–30</div><div class="stat-note">Đơn hàng mỗi tháng</div></div>
+    <div class="stat reveal"><div class="stat-label">DOANH THU MỤC TIÊU</div><div class="stat-value">400K–1.2M</div><div class="stat-note">VNĐ / tháng · dự kiến</div></div>
+  </section>
+
+  <section class="plan-section reveal" id="step1">
+    <div class="section-head"><div class="step">01</div><div><h2>Xác định ý tưởng kinh doanh</h2><p>Business idea</p></div></div>
+    <div class="grid">
+      <article class="item"><h3>Sản phẩm và dịch vụ</h3><p>Cung cấp dịch vụ hướng dẫn chơi game, hỗ trợ hoàn thành nhiệm vụ, tư vấn xây dựng nhân vật, hướng dẫn săn vật phẩm và chia sẻ tài nguyên hợp lệ trong các trò chơi Roblox như <strong>Blox Fruits, Anime Defenders</strong>.</p></article>
+      <article class="item"><h3>Khách hàng mục tiêu</h3><p>Người chơi Roblox yêu thích trò chơi trực tuyến, muốn cải thiện kỹ năng, tiết kiệm thời gian và tìm kiếm những hướng dẫn phù hợp với nhu cầu.</p></article>
+      <article class="item"><h3>Phương thức kinh doanh</h3><p>Hoạt động chủ yếu trên Internet thông qua Discord, Facebook và TikTok để giới thiệu dịch vụ, tư vấn khách hàng và tiếp nhận yêu cầu.</p></article>
+      <article class="item"><h3>Nguồn gốc ý tưởng</h3><p>Xuất phát từ niềm đam mê Roblox, kinh nghiệm chơi game, khả năng tìm hiểu cơ chế trò chơi và nhu cầu hỗ trợ của cộng đồng người chơi.</p></article>
+    </div>
+  </section>
+
+  <section class="plan-section reveal" id="step2">
+    <div class="section-head"><div class="step">02</div><div><h2>Xác định mục tiêu kinh doanh</h2><p>Business objectives</p></div></div>
+    <div class="grid">
+      <article class="item"><span class="tag">NGẮN HẠN</span><h3>1 tháng – 1 năm</h3><p>Hoàn thiện quy trình cung cấp dịch vụ, đạt khoảng 15–30 đơn hàng mỗi tháng, hướng tới doanh thu 400.000–1.200.000 VNĐ/tháng và xây dựng ít nhất 30 đánh giá tích cực.</p></article>
+      <article class="item"><span class="tag">TRUNG HẠN</span><h3>2 – 5 năm</h3><p>Mở rộng dịch vụ sang nhiều trò chơi mới, phát triển cộng đồng khách hàng trung thành, xây dựng thương hiệu RoFarm Service trên Discord và TikTok.</p></article>
+      <article class="item"><span class="tag">DÀI HẠN</span><h3>Trên 5 năm</h3><p>Phát triển thành một thương hiệu dịch vụ số chuyên nghiệp, tối ưu quy trình vận hành và mở rộng quy mô hoạt động khi đủ điều kiện.</p></article>
+      <article class="item"><span class="tag">NGUYÊN TẮC</span><h3>Định hướng phát triển</h3><p>Ưu tiên chất lượng dịch vụ, bảo vệ quyền lợi khách hàng, minh bạch giá cả và tuân thủ quy định của nền tảng.</p></article>
+    </div>
+  </section>
+
+  <section class="plan-section reveal" id="step3">
+    <div class="section-head"><div class="step">03</div><div><h2>Phân tích các điều kiện thực hiện</h2><p>Market & resource analysis</p></div></div>
+    <div class="grid">
+      <article class="item"><h3>Sản phẩm và giá cả</h3><p>Xây dựng các gói dịch vụ từ 10.000–50.000 VNĐ tùy độ khó và thời gian thực hiện. Công khai bảng giá để khách hàng dễ lựa chọn.</p></article>
+      <article class="item"><h3>Thị trường khách hàng</h3><p>Hướng đến cộng đồng người chơi Roblox, đặc biệt là nhóm khách hàng trẻ có nhu cầu tìm hiểu, học cách chơi và cải thiện kỹ năng.</p></article>
+      <article class="item"><h3>Đối thủ cạnh tranh</h3><p>Các cộng đồng hướng dẫn game, kênh nội dung Roblox và những đơn vị cung cấp dịch vụ hỗ trợ người chơi trực tuyến.</p></article>
+      <article class="item"><h3>Lợi thế cạnh tranh</h3><p>Chi phí khởi đầu thấp, am hiểu trò chơi, giao tiếp thân thiện, hỗ trợ nhanh chóng và có thể xây dựng dịch vụ theo nhu cầu.</p></article>
+    </div>
+    <div class="callout"><span class="callout-icon">✦</span><div><strong>Điều kiện cần thiết:</strong> Có thiết bị kết nối Internet, kiến thức về game, kỹ năng giao tiếp, thời gian phù hợp và sự hỗ trợ của phụ huynh khi cần thiết.</div></div>
+  </section>
+
+  <section class="plan-section reveal" id="step4">
+    <div class="section-head"><div class="step">04</div><div><h2>Xác định chiến lược kinh doanh</h2><p>Business strategy</p></div></div>
+    <div class="grid">
+      <article class="item"><h3>Chiến lược cung cấp dịch vụ</h3><p>Tiếp nhận yêu cầu, tư vấn gói dịch vụ, xác nhận giá và thời gian hoàn thành, thực hiện hỗ trợ rồi ghi nhận phản hồi.</p></article>
+      <article class="item"><h3>Chiến lược tiếp thị</h3><p>Đăng video hướng dẫn trên TikTok và YouTube Shorts, chia sẻ kinh nghiệm chơi game, giới thiệu dịch vụ và triển khai ưu đãi khai trương.</p></article>
+      <article class="item"><h3>Chiến lược tài chính</h3><p>Tận dụng thiết bị sẵn có để giảm chi phí. Theo dõi doanh thu, chi phí Internet, chi phí quảng bá và các khoản phát sinh. Dành một phần tiền làm vốn dự phòng.</p></article>
+      <article class="item"><h3>Chiến lược nhân sự</h3><p>Ban đầu tự quản lý và thực hiện công việc. Khi lượng khách tăng, có thể hợp tác với người có kinh nghiệm và phân chia nhiệm vụ phù hợp.</p></article>
+    </div>
+    <h3 class="table-title">Dự kiến phân bổ tài chính</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Khoản mục</th><th>Tỷ lệ dự kiến</th><th>Mục đích</th></tr></thead>
+      <tbody>
+        <tr><td>Chi phí vận hành</td><td>20%</td><td>Internet và chi phí phát sinh</td></tr>
+        <tr><td>Quảng bá</td><td>20%</td><td>Tiếp cận khách hàng mới</td></tr>
+        <tr><td>Tiết kiệm và dự phòng</td><td>30%</td><td>Duy trì hoạt động lâu dài</td></tr>
+        <tr><td>Lợi nhuận giữ lại</td><td>30%</td><td>Tích lũy và phát triển dịch vụ</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><span class="callout-icon">ⓘ</span><div><strong>Lưu ý:</strong> Đây là tỷ lệ phân bổ tham khảo trên doanh thu, cần điều chỉnh theo chi phí thực tế. Doanh thu không đồng nghĩa với lợi nhuận.</div></div>
+  </section>
+
+  <section class="plan-section reveal" id="step5">
+    <div class="section-head"><div class="step">05</div><div><h2>Đánh giá cơ hội, rủi ro và biện pháp xử lý</h2><p>Risk management</p></div></div>
+    <div class="grid">
+      <article class="item"><h3>Cơ hội kinh doanh</h3><p>Roblox có cộng đồng người chơi lớn, nhiều trò chơi được cập nhật thường xuyên, tạo cơ hội phát triển nội dung hướng dẫn và dịch vụ hỗ trợ.</p></article>
+      <article class="item"><h3>Rủi ro cạnh tranh</h3><p>Nhiều cá nhân và cộng đồng cùng cung cấp dịch vụ tương tự. Cần nâng cao chất lượng, giữ giá hợp lý và xây dựng uy tín lâu dài.</p></article>
+      <article class="item"><h3>Rủi ro bảo mật</h3><p>Có thể xảy ra lộ thông tin hoặc tranh chấp tài khoản. Không yêu cầu mật khẩu, mã xác thực hoặc thông tin đăng nhập của khách hàng.</p></article>
+      <article class="item"><h3>Rủi ro thanh toán</h3><p>Có thể xảy ra tình trạng khách hàng không thanh toán hoặc tranh chấp đơn hàng. Cần xác nhận rõ nội dung, giá và điều kiện trước khi cung cấp dịch vụ.</p></article>
+      <article class="item"><h3>Rủi ro ảnh hưởng học tập</h3><p>Dành quá nhiều thời gian kinh doanh có thể ảnh hưởng đến việc học. Cần giới hạn số đơn và chỉ làm việc trong thời gian rảnh.</p></article>
+      <article class="item"><h3>Rủi ro từ nền tảng</h3><p>Một số hình thức giao dịch hoặc dịch vụ có thể không được nền tảng cho phép. Cần kiểm tra điều khoản Roblox và chỉ cung cấp dịch vụ phù hợp quy định.</p></article>
+    </div>
+    <div class="callout warning"><span class="callout-icon">⚠</span><div><strong>Nguyên tắc an toàn:</strong> Không mua bán tài khoản trái quy định, không sử dụng phần mềm gian lận, không thu thập thông tin đăng nhập và không thực hiện giao dịch có nguy cơ gây thiệt hại cho người chơi.</div></div>
+  </section>
+
+
+</main>
+
+<button class="top-btn" id="topBtn" aria-label="Lên đầu trang" title="Lên đầu trang">↑</button>
+<script>
+const progress=document.getElementById('progress');
+const topBtn=document.getElementById('topBtn');
+function onScroll(){
+  const max=document.documentElement.scrollHeight-innerHeight;
+  progress.style.width=(max>0?scrollY/max*100:0)+'%';
+  topBtn.classList.toggle('show',scrollY>450);
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+topBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}
+  });
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
